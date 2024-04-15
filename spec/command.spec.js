@@ -10,3 +10,14 @@ describe("Command class", function() {
   });
 
 });
+
+describe("constructor sets command type", function(){
+  it("throws error if command class does NOT include command type property", function(){
+  });
+});
+
+describe("constructor sets a value passed in as the 2nd argument", function(){
+  it("throws error if value is NOT passed into constructor as the 2nd parameter", function(){
+
+  });
+});
