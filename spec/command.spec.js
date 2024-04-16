@@ -9,15 +9,12 @@ describe("Command class", function() {
     expect( function() { new Command();}).toThrow(new Error('Command type required.'));
   });
 
-});
 
-describe("constructor sets command type", function(){
-  it("throws error if command class does NOT include command type property", function(){
+  it("constructor sets command type", function(){
+  });
+  
+  it("constructor sets a value passed in as the 2nd argument", function(){
+  expect( function() { new Command(commandtype, value)})
   });
 });
 
-describe("constructor sets a value passed in as the 2nd argument", function(){
-  it("throws error if value is NOT passed into constructor as the 2nd parameter", function(){
-
-  });
-});
