@@ -11,21 +11,17 @@ test("throws error if command type is NOT passed into constructor as the first p
 
 //TEST 2
   test("constructor sets command type", function(){
-    let attempt = function(){new Command(commandType, value)
-      this.commandType= commandType;
-      }
-      expect(attempt);
+    let command1=new Command("MOVE");
+      let attempt = new Command(command1) 
+        expect(attempt);
     });
   
   
 //TEST 3
   test("constructor sets a value passed in as the 2nd argument", function(){
-    let attempt= function(){
-    new Command(commandType, value)
-    commandType= this.commandType;
-    value=this.value;
-  };
-    expect(attempt)
+    let command2= new Command("MOVE", 10000);
+    let attempt= new Command(command2)
+    expect(attempt);
   });
 
 });
