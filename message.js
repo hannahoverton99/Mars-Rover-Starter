@@ -1,7 +1,7 @@
 class Message {
-   constructor(name, commandsArr){
+   constructor(name, commands){
       this.name=name;
-      this.commandsArr= commandsArr;
+      this.commands= commands;
       if (!name) {
          throw Error("Name of message required.");
        }

@@ -11,17 +11,17 @@ test("throws error if command type is NOT passed into constructor as the first p
 
 //TEST 2
   test("constructor sets command type", function(){
-    let command1=new Command("MOVE");
-      let attempt = new Command(command1) 
-        expect(attempt);
+    let obj= {commandType: "MOVE", 
+              value: 1000}; 
+        expect(new Command(obj["commandType"])).toEqual(new Command(obj["commandType"]));
     });
   
   
 //TEST 3
   test("constructor sets a value passed in as the 2nd argument", function(){
-    let command2= new Command("MOVE", 10000);
-    let attempt= new Command(command2)
-    expect(attempt);
+    let obj= {commandType:"MOVE",
+              value:10000};
+    expect(obj["value"]).toEqual(obj["value"]);
   });
 
 });

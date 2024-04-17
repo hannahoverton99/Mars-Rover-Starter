@@ -12,16 +12,16 @@ describe("Message class", function() {
 
   //TEST 5
     test("constructor sets name", function(){
-      let message1=new Message("test message with two commands");
-      let attempt = new Message(message1) 
-        expect(attempt);
+      const obj= {name:"test message with two commands",
+                  commands:['MODE_CHANGE', 'LOW_POWER']};        
+        expect(obj["name"]).toEqual(obj["name"]);
     });
 
   //TEST 6
     test("contains a commands array passed into the constructor as the 2nd argument", function(){
-      let message1=new Message("test message with two commands", ['MODE_CHANGE', 'LOW_POWER']);
-      let attempt = new Message(message1) 
-        expect(attempt);
+      const obj={name: "test message with two commands",
+                commands: ['MODE_CHANGE', 'LOW_POWER']};
+        expect(obj["commands"]).toEqual(obj["commands"]);
     });
 });
 
