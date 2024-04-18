@@ -13,7 +13,9 @@ test("throws error if command type is NOT passed into constructor as the first p
   test("constructor sets command type", function(){
     let obj= {commandType: "MOVE", 
               value: 1000}; 
-        expect(new Command(obj["commandType"])).toEqual(new Command(obj["commandType"]));
+    let newCommand= new Command(obj.commandType, obj.value);
+        expect(newCommand).toBeInstanceOf(Command);
+        expect(new Command(obj.commandType)).toEqual(new Command(obj.commandType));
     });
   
   
@@ -21,6 +23,8 @@ test("throws error if command type is NOT passed into constructor as the first p
   test("constructor sets a value passed in as the 2nd argument", function(){
     let obj= {commandType:"MOVE",
               value:10000};
+    let newCommand= new Command(obj.commandType, obj.value);
+    expect(newCommand).toBeInstanceOf(Command);
     expect(obj["value"]).toEqual(obj["value"]);
   });
 
