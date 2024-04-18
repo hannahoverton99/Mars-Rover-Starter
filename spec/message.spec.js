@@ -16,18 +16,16 @@ describe("Message class", function() {
                   commands:['MODE_CHANGE', 'LOW_POWER']};  
      let newMessage= new Message(obj.name, obj.commands);
       expect(newMessage).toBeInstanceOf(Message);
-      expect(new Message(obj.name)).toEqual(new Message(obj.name));      
-      expect(obj["name"]).toEqual(obj["name"]);
+      expect(newMessage.name).toEqual("test message with two commands")
     });
 
   //TEST 6
     test("contains a commands array passed into the constructor as the 2nd argument", function(){
       const obj={name: "test message with two commands",
                 commands: ['MODE_CHANGE', 'LOW_POWER']};
-      for(let i=0; i< obj.commands.length; i++){
-          let newMessage= new Message(obj.name, obj.commands[i]);
+          let newMessage= new Message(obj.name, obj.commands);
           expect(newMessage).toBeInstanceOf(Message);
-            expect(obj["commands"]).toEqual(obj["commands"])};
+            expect(newMessage.commands).toEqual(['MODE_CHANGE', 'LOW_POWER'])
     });
 });
 

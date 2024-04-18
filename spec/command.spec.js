@@ -14,8 +14,9 @@ test("throws error if command type is NOT passed into constructor as the first p
     let obj= {commandType: "MOVE", 
               value: 1000}; 
     let newCommand= new Command(obj.commandType, obj.value);
+    console.log(newCommand);
         expect(newCommand).toBeInstanceOf(Command);
-        expect(new Command(obj.commandType)).toEqual(new Command(obj.commandType));
+        expect(newCommand.commandType).toEqual("MOVE");
     });
   
   
@@ -25,7 +26,7 @@ test("throws error if command type is NOT passed into constructor as the first p
               value:10000};
     let newCommand= new Command(obj.commandType, obj.value);
     expect(newCommand).toBeInstanceOf(Command);
-    expect(obj["value"]).toEqual(obj["value"]);
+    expect(newCommand.value).toEqual(10000);
   });
 
 });
