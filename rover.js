@@ -21,7 +21,8 @@ class Rover {
       } if(commands.commandType ==='MODE_CHANGE'){
             results.push({commandType: commands.commandType, value: commands.value});
          }else if(commands.commandType === 'STATUS_CHECK'){
-            results.push({commandType: commands.commandType})
+            results.push({completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}})
+            // results.push({commandType: commands.commandType})
          };
       };
        let response={

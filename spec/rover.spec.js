@@ -36,7 +36,17 @@ expect(response.results).toEqual([
     {commandType: 'MODE_CHANGE', value: 'LOW_POWER'},
     {commandType: 'STATUS_CHECK'}
   ]);
+});
 
-
+//TEST 10
+test("responds correctly to the status check command", function(){
+let commands =[new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+let message=new Message('Test message for status check', commands);
+let rover = new Rover(message)
+let response=rover.receiveMessage();
+expect(response.results).toEqual([
+    {commandType:'MODE_CHANGE', value: 'LOW_POWER'},
+    {completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}}
+]);
 });
 });
