@@ -13,16 +13,15 @@ class Rover {
    // Write code here!
    receiveMessage(){
       let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-      console.log(commands.value)
       let message= new Message('Test message with two commands', commands)
       let results =[];
       for(let commands of message.commands){
          if(commands.commandType === 'MOVE'){
             results.push({commandType: commands.commandType, value: commands.value});
-      } if(commands.commandType ==='MODE_CHANGE'){
+         }else if(commands.commandType ==='MODE_CHANGE'){
             results.push({commandType: commands.commandType, value: commands.value});
          }else if(commands.commandType === 'STATUS_CHECK'){
-            results.push({completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}})
+            results.push({commandType: commands.commandType, completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}})
             // results.push({commandType: commands.commandType})
          };
       };

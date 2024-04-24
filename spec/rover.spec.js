@@ -28,13 +28,11 @@ test("response returned by receiveMessage contains the name of the message", fun
 
 //TEST 9
 test("response returned by receiveMessage includes two results if two commands are sent in the message", function(){
-  let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-  let message= new Message('Test message with two commands', commands);
   let rover= new Rover();
   let response = rover.receiveMessage();
-  expect(response.results.commandType).toBe([
+  expect(response.results).toEqual([
     {commandType: 'MODE_CHANGE', value: 'LOW_POWER'},
-    {commandType: 'STATUS_CHECK'}
+    {commandType: 'STATUS_CHECK', completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}}
   ]);
 });
 
@@ -46,7 +44,7 @@ test("responds correctly to the status check command", function(){
   let response=rover.receiveMessage();
   expect(response.results).toEqual([
       {commandType:'MODE_CHANGE', value: 'LOW_POWER'},
-      {completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}}
+      {commandType: 'STATUS_CHECK', completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}}
 ]);
 });
 
