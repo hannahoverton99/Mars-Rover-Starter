@@ -17,7 +17,10 @@ class Rover {
       let results =[];
       for(let commands of message.commands){
          if(commands.commandType === 'MOVE'){
-            results.push({commandType: commands.commandType, value: commands.value});
+            if(commands.value === 'LOW_POWER'){
+               return;
+            }else{
+            results.push({commandType: commands.commandType, completed: true})};
          }else if(commands.commandType ==='MODE_CHANGE'){
             results.push({commandType: commands.commandType, value: commands.value});
          }else if(commands.commandType === 'STATUS_CHECK'){

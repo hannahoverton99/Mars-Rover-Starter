@@ -54,4 +54,13 @@ test("responds correctly to the mode change command", function(){
   // console.log(commands.value)
   expect(commands.value).toBe('LOW_POWER' || 'NORMAL');
 });
+
+//TEST 12
+test("responds with a false completed value when attempting to move in LOW_POWER mode", function(){
+  let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE')];
+  for(let i = 0; i< commands.length; i++){
+    return commands.completed;
+  };
+expect(commands.completed).toBe(false);
+});
 });
