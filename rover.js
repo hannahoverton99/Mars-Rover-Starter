@@ -11,17 +11,17 @@ class Rover {
       this.generatorWatts= generatorWatts
    }
    // Write code here!
-   receiveMessage(){
-      let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-      let message= new Message('Test message with two commands', commands)
+   receiveMessage(message){
       let results =[];
       for(let commands of message.commands){
          if(commands.commandType === 'MOVE'){
             if(commands.value === 'LOW_POWER'){
-               return;
+               results.push({commandType:'MOVE', completed: false});
             }else{
-            results.push({commandType: commands.commandType, completed: true})};
+            this.position = commands.value;
+            results.push({commandType: 'MOVE', completed: true})};
          }else if(commands.commandType ==='MODE_CHANGE'){
+            this.mode= commands.value;
             results.push({commandType: commands.commandType, value: commands.value});
          }else if(commands.commandType === 'STATUS_CHECK'){
             results.push({commandType: commands.commandType, completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}})
