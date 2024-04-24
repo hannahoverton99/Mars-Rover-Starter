@@ -13,6 +13,7 @@ class Rover {
    // Write code here!
    receiveMessage(){
       let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+      console.log(commands.value)
       let message= new Message('Test message with two commands', commands)
       let results =[];
       for(let commands of message.commands){
