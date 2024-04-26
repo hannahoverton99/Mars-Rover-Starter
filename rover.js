@@ -5,7 +5,7 @@ const Message= require('./message.js');
 
 
 class Rover {
-   constructor(position, mode= "NORMAL", generatorWatts = 110){
+   constructor(position, mode = 'NORMAL', generatorWatts = 110){
       this.position = position,
       this.mode= mode,
       this.generatorWatts= generatorWatts
@@ -13,18 +13,19 @@ class Rover {
    // Write code here!
    receiveMessage(message){
       let results =[];
-      for(let commands of message.commands){
-         if(commands.commandType === 'MOVE'){
-            if(commands.value === 'LOW_POWER'){
-               results.push({commandType:'MOVE', completed: false});
+      for(let command of message.commands){
+         if(command.commandType === 'MOVE'){
+            if(this.mode === 'LOW_POWER'){
+               results.push({completed: false});
             }else{
-            this.position = commands.value;
-            results.push({commandType: 'MOVE', completed: true})};
-         }else if(commands.commandType ==='MODE_CHANGE'){
-            this.mode= commands.value;
-            results.push({commandType: commands.commandType, value: commands.value});
-         }else if(commands.commandType === 'STATUS_CHECK'){
-            results.push({commandType: commands.commandType, completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 87382098}})
+            this.position = command.value;
+            results.push({completed: true})};
+         }else if(command.commandType ==='MODE_CHANGE'){
+            this.mode= command.value;
+             results.push({completed: true});
+            
+         }else if(command.commandType === 'STATUS_CHECK'){
+            results.push({completed: true, roverStatus: {mode: this.mode, generatorWatts: this.generatorWatts, position: this.position}})
             // results.push({commandType: commands.commandType})
          };
       };
