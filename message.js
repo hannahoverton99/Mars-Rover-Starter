@@ -6,7 +6,7 @@ class Message {
          throw Error("Name of message required.");
        }
    }
-   // Write code here!
+
 }
 
 module.exports = Message;

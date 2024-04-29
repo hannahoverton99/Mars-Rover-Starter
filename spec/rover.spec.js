@@ -50,19 +50,27 @@ test("responds correctly to the status check command", function(){
 
 //TEST 11
 test("responds correctly to the mode change command", function(){
-  let commands =new Command('MODE_CHANGE', 'LOW_POWER');
+  let commands =[new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+  let message=new Message('Test message for mode change', commands);
+  let rover = new Rover(200)
+  let response=rover.receiveMessage(message);
+  expect(response.results[0]).toEqual({completed: true});
   // console.log(commands.value)
-  expect(commands.value).toBe('LOW_POWER' || 'NORMAL');
+  expect(rover.mode).toBe('LOW_POWER');
 });
 
 //TEST 12
 test("responds with a false completed value when attempting to move in LOW_POWER mode", function(){
   let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE')];
-  for(let i = 0; i< commands.length; i++){
-    return commands.completed;
-  };
-expect(commands.completed).toBe(false);
+  let position= 1000;
+  let message=new Message('Test message for MOVE command', commands);
+  let rover = new Rover(position);
+  let response=rover.receiveMessage(message);
+  expect(rover.position).toEqual(1000);
+  expect(response.results[1]).toEqual({completed: false});
 });
+
+
 
 //TEST 13
 test("responds with the position for the move command", function(){
